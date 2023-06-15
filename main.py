@@ -341,6 +341,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
+st.header("Analiza klasyfikatora KNN")
 
 uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
 if uploaded_file is not None:
@@ -401,6 +402,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
+st.header("Analiza klasyfikatora drzewa losowego")
+
 
 uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
 if uploaded_file is not None:
@@ -455,6 +458,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
+st.header("Analiza klasyfikatora drzewa decyzyjnego")
 
 uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
 if uploaded_file is not None:
@@ -503,8 +507,9 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 import streamlit as st
 import pandas as pd
-
 import matplotlib.pyplot as plt
+
+st.header("Analiza grupowania KMeans")
 
 uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
 
@@ -574,6 +579,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+st.header("Analiza grupowania DBSCAN")
+
 uploaded_file = st.file_uploader("Choose a file", key='2')  # Uploader plików
 
 if uploaded_file is not None:
@@ -628,6 +635,8 @@ import pandas as pd
 import numpy as np
 from sklearn.cluster import AgglomerativeClustering
 import matplotlib.pyplot as plt
+
+st.header("Analiza grupowania hierarchicznego")
 
 uploaded_file = st.file_uploader("Choose a file", key='3')  # Uploader plików
 
@@ -768,7 +777,12 @@ if uploaded_file is not None:
 
     def add_additional_values_a(self, event=None):
         support = self.tab1_additional_field1.get()
+        if not support:  # Jeśli wartość support nie została podana
+            support = "0.15"  # Przypisz wartość domyślną
+
         confidence = self.tab1_additional_field2.get()
+        if not confidence:  # Jeśli wartość confidence nie została podana
+            confidence = "0.5"  # Przypisz wartość domyślną
 
         additional_text = """
 import streamlit as st
@@ -807,9 +821,17 @@ if uploaded_file is not None:
 
     def add_additional_values_knn(self, event=None):
         ts = self.tab2_additional_field1.get()
+        if not ts:
+            ts = "0.6"
         rs = self.tab2_additional_field2.get()
+        if not rs:
+            rs = "1234"
         nm = self.tab2_additional_field3.get()
+        if not nm:
+            nm = "5"
         choice = self.menu.get()
+        if not choice:
+            choice = "euclidean"
 
         additional_text = """
 import streamlit as st
@@ -822,6 +844,8 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
+
+st.header("Analiza klasyfikatora KNN")
 
 uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
 if uploaded_file is not None:
@@ -877,9 +901,17 @@ if uploaded_file is not None:
 
     def add_additional_values_dl(self, event=None):
         ts = self.tab4_additional_field1.get()
+        if not ts:
+            ts= "0.5"
         rs = self.tab4_additional_field2.get()
+        if not rs:
+            rs= "1234"
         ne = self.tab4_additional_field3.get()
+        if not ne:
+            ne= "100"
         md = self.tab4_additional_field4.get()
+        if not md:
+            md= "5"
         additional_text = """
 import streamlit as st
 import numpy as np
@@ -889,6 +921,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
+
+st.header("Analiza klasyfikatora drzewa losowego")
 
 uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
 if uploaded_file is not None:
@@ -940,8 +974,14 @@ if uploaded_file is not None:
 
     def add_additional_values_dd(self, event=None):
             ts = self.tab5_additional_field1.get()
+            if not ts:
+                ts = "0.6"
             rs = self.tab5_additional_field2.get()
+            if not rs:
+                rs = "1234"
             md = self.tab5_additional_field3.get()
+            if not md:
+                md = "5"
             additional_text = """
 import streamlit as st
 import numpy as np
@@ -952,6 +992,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
+st.header("Analiza klasyfikatora drzewa decyzyjnego")
 
 uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
 if uploaded_file is not None:
@@ -1003,9 +1044,17 @@ if uploaded_file is not None:
 
     def add_additional_values_gkm(self, event=None):
         nc = self.tab3_additional_field1.get()
+        if not nc:
+            nc = "4"
         ni = self.tab3_additional_field2.get()
+        if not ni:
+            ni = "10"
         mi = self.tab3_additional_field3.get()
+        if not mi:
+            mi = "1000"
         rs = self.tab3_additional_field4.get()
+        if not rs:
+            rs = "1234"
         additional_text = """
 from sklearn.cluster import KMeans
 import streamlit as st
@@ -1013,6 +1062,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
+
+st.header("Analiza grupowania KMeans")
 
 uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
 
@@ -1078,14 +1129,22 @@ if uploaded_file is not None:
 
     def add_additional_values_gdb(self, event=None):
         e = self.tab6_additional_field1.get()
+        if not e:
+            e = "3"
         ms = self.tab6_additional_field2.get()
+        if not ms:
+            ms = "5"
         met = self.menu.get()
+        if not met:
+            met = "3"
         additional_text = """
 import streamlit as st
 import numpy as np
 import pandas as pd
 from sklearn.cluster import DBSCAN
 import matplotlib.pyplot as plt
+
+st.header("Analiza grupowania DBSCAN)
 
 uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
 
@@ -1149,6 +1208,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import AgglomerativeClustering
+
+st.header("Analiza grupowania hierarchicznego")
 
 uploaded_file = st.file_uploader("Choose a file", key='3')  # Uploader plików
 
@@ -1215,6 +1276,7 @@ if uploaded_file is not None:
         with open(filename, "w", encoding='utf-8') as f:
             f.write(script)
         subprocess.Popen(["streamlit", "run", filename])
+        self.clear_script()
 
 root = tk.Tk()
 app = Application(master=root)
