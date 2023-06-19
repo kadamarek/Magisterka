@@ -12,6 +12,7 @@ class Application(tk.Frame):
         self.pack()
         self.create_widgets()
 
+#Dodanie widżetów do GUI
     def create_widgets(self):
         self.tabControl = ttk.Notebook(self)
         self.tabControl.pack(fill="both", expand=True)
@@ -63,8 +64,8 @@ class Application(tk.Frame):
         self.script1_button.pack(side=tk.TOP)
 
         self.tab1_var = tk.IntVar()
-        self.tab1_checkbox = tk.Checkbutton(self.tab1, text="Funkcje zaawansowane", variable=self.tab1_var, command=self.show_additional_functions)
-
+        self.tab1_checkbox = tk.Checkbutton(self.tab1, text="Funkcje zaawansowane", variable=self.tab1_var,
+                                            command=self.show_additional_functions)
         self.tab1_checkbox.pack(side=tk.TOP)
 
         self.tab1_additional_label1 = tk.Label(self.tab1, text="Wsparcie")
@@ -74,6 +75,7 @@ class Application(tk.Frame):
         self.tab1_additional_field1 = tk.Entry(self.tab1)
         self.tab1_additional_field1.pack(side=tk.LEFT)
         self.tab1_additional_field1.bind("<Return>", lambda event: self.add_additional_values_a())
+        self.tab1_additional_field1.configure(state='disabled')
 
         self.tab1_additional_label2 = tk.Label(self.tab1, text="Zaufanie")
         self.tab1_additional_label2.pack(side=tk.LEFT)
@@ -82,6 +84,7 @@ class Application(tk.Frame):
         self.tab1_additional_field2 = tk.Entry(self.tab1)
         self.tab1_additional_field2.pack(side=tk.LEFT)
         self.tab1_additional_field2.bind("<Return>", lambda event: self.add_additional_values_a())
+        self.tab1_additional_field2.configure(state='disabled')
 
     def create_tab2_widgets(self):
         self.script2_button = tk.Button(self.tab2)
@@ -90,81 +93,90 @@ class Application(tk.Frame):
         self.script2_button.pack(side=tk.TOP)
 
         self.tab2_var = tk.IntVar()
-        self.tab2_checkbox = tk.Checkbutton(self.tab2, text="Funkcje zaawansowane", variable=self.tab2_var, command=self.show_additional_functions)
+        self.tab2_checkbox = tk.Checkbutton(self.tab2, text="Funkcje zaawansowane", variable=self.tab2_var,
+                                            command=self.show_additional_functions)
         self.tab2_checkbox.pack(side=tk.TOP)
 
-        self.tab2_additional_label1 = tk.Label(self.tab2, text="Test size")
+        self.tab2_additional_label1 = tk.Label(self.tab2, text="Rozmiar tablicy testowej")
         self.tab2_additional_label1.pack(side=tk.LEFT)
         self.tab2_additional_label1.configure(state='disabled')
 
         self.tab2_additional_field1 = tk.Entry(self.tab2)
         self.tab2_additional_field1.pack(side=tk.LEFT)
         self.tab2_additional_field1.bind("<Return>", lambda event: self.add_additional_values_knn())
+        self.tab2_additional_field1.configure(state='disabled')
 
-        self.tab2_additional_label2 = tk.Label(self.tab2, text="Random State")
+        self.tab2_additional_label2 = tk.Label(self.tab2, text="Stan losowy")
         self.tab2_additional_label2.pack(side=tk.LEFT)
         self.tab2_additional_label2.configure(state='disabled')
 
         self.tab2_additional_field2 = tk.Entry(self.tab2)
         self.tab2_additional_field2.pack(side=tk.LEFT)
         self.tab2_additional_field2.bind("<Return>", lambda event: self.add_additional_values_knn())
+        self.tab2_additional_field2.configure(state='disabled')
 
-        self.tab2_additional_label3 = tk.Label(self.tab2, text="Number of Neighbors")
+        self.tab2_additional_label3 = tk.Label(self.tab2, text="Liczba sąsiadów")
         self.tab2_additional_label3.pack(side=tk.LEFT)
         self.tab2_additional_label3.configure(state='disabled')
 
         self.tab2_additional_field3 = tk.Entry(self.tab2)
         self.tab2_additional_field3.pack(side=tk.LEFT)
         self.tab2_additional_field3.bind("<Return>", lambda event: self.add_additional_values_knn())
+        self.tab2_additional_field3.configure(state='disabled')
 
-        self.menu_label = tk.Label(self.tab2, text="Wybierz metrykę:")
-        self.menu_label.pack(side=tk.LEFT)
-        self.menu = ttk.Combobox(self.tab2, values=["euclidean", "manhattan", "l1", "l2"])
-        self.menu.bind("<Return>", lambda event: self.add_additional_values_knn())
-        self.menu.configure(state='disabled')
-        self.menu.pack()
+        self.tab2_menu_label = tk.Label(self.tab2, text="Wybierz metrykę:")
+        self.tab2_menu_label.pack(side=tk.LEFT)
+        self.tab2_menu_label.configure(state='disabled')
+
+        self.tab2_menu = ttk.Combobox(self.tab2, values=["euclidean", "manhattan", "minkowski"])
+        self.tab2_menu.pack(side=tk.LEFT)
+        self.tab2_menu.bind("<Return>", lambda event: self.add_additional_values_knn())
+        self.tab2_menu.configure(state='disabled')
 
     def create_tab4_widgets(self):
         self.script4_button = tk.Button(self.tab4)
         self.script4_button["text"] = "Train and Test - wartości domyślne"
         self.script4_button["command"] = self.add_text_dl
         self.script4_button.pack(side=tk.TOP)
-
         self.tab4_var = tk.IntVar()
-        self.tab4_checkbox = tk.Checkbutton(self.tab4, text="Funkcje zaawansowane", variable=self.tab4_var, command=self.show_additional_functions)
+        self.tab4_checkbox = tk.Checkbutton(self.tab4, text="Funkcje zaawansowane", variable=self.tab4_var,
+                                            command=self.show_additional_functions)
         self.tab4_checkbox.pack(side=tk.TOP)
-
-        self.tab4_additional_label1 = tk.Label(self.tab4, text="Test size")
+        self.tab4_additional_label1 = tk.Label(self.tab4, text="Rozmiar tablicy testowej")
         self.tab4_additional_label1.pack(side=tk.LEFT)
         self.tab4_additional_label1.configure(state='disabled')
 
         self.tab4_additional_field1 = tk.Entry(self.tab4)
         self.tab4_additional_field1.pack(side=tk.LEFT)
         self.tab4_additional_field1.bind("<Return>", lambda event: self.add_additional_values_dl())
+        self.tab4_additional_field1.configure(state='disabled')
 
-        self.tab4_additional_label2 = tk.Label(self.tab4, text="Random State")
+        self.tab4_additional_label2 = tk.Label(self.tab4, text="Stan losowy")
         self.tab4_additional_label2.pack(side=tk.LEFT)
         self.tab4_additional_label2.configure(state='disabled')
 
         self.tab4_additional_field2 = tk.Entry(self.tab4)
         self.tab4_additional_field2.pack(side=tk.LEFT)
         self.tab4_additional_field2.bind("<Return>", lambda event: self.add_additional_values_dl())
+        self.tab4_additional_field2.configure(state='disabled')
 
-        self.tab4_additional_label3 = tk.Label(self.tab4, text="Number of Estimators")
+        self.tab4_additional_label3 = tk.Label(self.tab4, text="Liczba estymatorów")
         self.tab4_additional_label3.pack(side=tk.LEFT)
         self.tab4_additional_label3.configure(state='disabled')
 
         self.tab4_additional_field3 = tk.Entry(self.tab4)
         self.tab4_additional_field3.pack(side=tk.LEFT)
         self.tab4_additional_field3.bind("<Return>", lambda event: self.add_additional_values_dl())
+        self.tab4_additional_field3.configure(state='disabled')
 
-        self.tab4_additional_label4 = tk.Label(self.tab4, text="Max Depth")
+        self.tab4_additional_label4 = tk.Label(self.tab4, text="Maksymalna głębokość")
         self.tab4_additional_label4.pack(side=tk.LEFT)
         self.tab4_additional_label4.configure(state='disabled')
 
         self.tab4_additional_field4 = tk.Entry(self.tab4)
         self.tab4_additional_field4.pack(side=tk.LEFT)
         self.tab4_additional_field4.bind("<Return>", lambda event: self.add_additional_values_dl())
+        self.tab4_additional_field4.configure(state='disabled')
 
     def create_tab5_widgets(self):
         self.script5_button = tk.Button(self.tab5)
@@ -173,32 +185,36 @@ class Application(tk.Frame):
         self.script5_button.pack(side=tk.TOP)
 
         self.tab5_var = tk.IntVar()
-        self.tab5_checkbox = tk.Checkbutton(self.tab5, text="Funkcje zaawansowane", variable=self.tab5_var, command=self.show_additional_functions)
+        self.tab5_checkbox = tk.Checkbutton(self.tab5, text="Funkcje zaawansowane", variable=self.tab5_var,
+                                            command=self.show_additional_functions)
         self.tab5_checkbox.pack(side=tk.TOP)
 
-        self.tab5_additional_label1 = tk.Label(self.tab5, text="Test size")
+        self.tab5_additional_label1 = tk.Label(self.tab5, text="Rozmiar tablicy testowej")
         self.tab5_additional_label1.pack(side=tk.LEFT)
         self.tab5_additional_label1.configure(state='disabled')
 
         self.tab5_additional_field1 = tk.Entry(self.tab5)
         self.tab5_additional_field1.pack(side=tk.LEFT)
         self.tab5_additional_field1.bind("<Return>", lambda event: self.add_additional_values_dd())
+        self.tab5_additional_field1.configure(state='disabled')
 
-        self.tab5_additional_label2 = tk.Label(self.tab5, text="Random State")
+        self.tab5_additional_label2 = tk.Label(self.tab5, text="Stan losowy")
         self.tab5_additional_label2.pack(side=tk.LEFT)
         self.tab5_additional_label2.configure(state='disabled')
 
         self.tab5_additional_field2 = tk.Entry(self.tab5)
         self.tab5_additional_field2.pack(side=tk.LEFT)
         self.tab5_additional_field2.bind("<Return>", lambda event: self.add_additional_values_dd())
+        self.tab5_additional_field2.configure(state='disabled')
 
-        self.tab5_additional_label3 = tk.Label(self.tab5, text="Max Depth")
+        self.tab5_additional_label3 = tk.Label(self.tab5, text="Maksymalna głębokość")
         self.tab5_additional_label3.pack(side=tk.LEFT)
         self.tab5_additional_label3.configure(state='disabled')
 
         self.tab5_additional_field3 = tk.Entry(self.tab5)
         self.tab5_additional_field3.pack(side=tk.LEFT)
         self.tab5_additional_field3.bind("<Return>", lambda event: self.add_additional_values_dd())
+        self.tab5_additional_field3.configure(state='disabled')
 
     def create_tab3_widgets(self):
         self.script3_button = tk.Button(self.tab3)
@@ -207,40 +223,45 @@ class Application(tk.Frame):
         self.script3_button.pack(side=tk.TOP)
 
         self.tab3_var = tk.IntVar()
-        self.tab3_checkbox = tk.Checkbutton(self.tab3, text="Funkcje zaawansowane", variable=self.tab3_var, command=self.show_additional_functions)
+        self.tab3_checkbox = tk.Checkbutton(self.tab3, text="Funkcje zaawansowane", variable=self.tab3_var,
+                                            command=self.show_additional_functions)
         self.tab3_checkbox.pack(side=tk.TOP)
 
-        self.tab3_additional_label1 = tk.Label(self.tab3, text="Numbers of clusters")
+        self.tab3_additional_label1 = tk.Label(self.tab3, text="Liczba klastrów")
         self.tab3_additional_label1.pack(side=tk.LEFT)
         self.tab3_additional_label1.configure(state='disabled')
 
         self.tab3_additional_field1 = tk.Entry(self.tab3)
         self.tab3_additional_field1.pack(side=tk.LEFT)
         self.tab3_additional_field1.bind("<Return>", lambda event: self.add_additional_values_gkm())
+        self.tab3_additional_field1.configure(state='disabled')
 
-        self.tab3_additional_label2 = tk.Label(self.tab3, text="Minimum number of iterations")
+        self.tab3_additional_label2 = tk.Label(self.tab3, text="Minimalna liczba iteracji")
         self.tab3_additional_label2.pack(side=tk.LEFT)
         self.tab3_additional_label2.configure(state='disabled')
 
         self.tab3_additional_field2 = tk.Entry(self.tab3)
         self.tab3_additional_field2.pack(side=tk.LEFT)
         self.tab3_additional_field2.bind("<Return>", lambda event: self.add_additional_values_gkm())
+        self.tab3_additional_field2.configure(state='disabled')
 
-        self.tab3_additional_label3 = tk.Label(self.tab3, text="Maximium number of iterations")
+        self.tab3_additional_label3 = tk.Label(self.tab3, text="Maksymalna liczba iteracji")
         self.tab3_additional_label3.pack(side=tk.LEFT)
         self.tab3_additional_label3.configure(state='disabled')
 
         self.tab3_additional_field3 = tk.Entry(self.tab3)
         self.tab3_additional_field3.pack(side=tk.LEFT)
         self.tab3_additional_field3.bind("<Return>", lambda event: self.add_additional_values_gkm())
+        self.tab3_additional_field3.configure(state='disabled')
 
-        self.tab3_additional_label4 = tk.Label(self.tab3, text="Random state")
+        self.tab3_additional_label4 = tk.Label(self.tab3, text="Stan losowy")
         self.tab3_additional_label4.pack(side=tk.LEFT)
         self.tab3_additional_label4.configure(state='disabled')
 
         self.tab3_additional_field4 = tk.Entry(self.tab3)
         self.tab3_additional_field4.pack(side=tk.LEFT)
         self.tab3_additional_field4.bind("<Return>", lambda event: self.add_additional_values_gkm())
+        self.tab3_additional_field4.configure(state='disabled')
 
     def create_tab6_widgets(self):
         self.script6_button = tk.Button(self.tab6)
@@ -249,7 +270,8 @@ class Application(tk.Frame):
         self.script6_button.pack(side=tk.TOP)
 
         self.tab6_var = tk.IntVar()
-        self.tab6_checkbox = tk.Checkbutton(self.tab6, text="Funkcje zaawansowane", variable=self.tab6_var, command=self.show_additional_functions)
+        self.tab6_checkbox = tk.Checkbutton(self.tab6, text="Funkcje zaawansowane", variable=self.tab6_var,
+                                            command=self.show_additional_functions)
         self.tab6_checkbox.pack(side=tk.TOP)
 
         self.tab6_additional_label1 = tk.Label(self.tab6, text="Wsparcie")
@@ -259,6 +281,7 @@ class Application(tk.Frame):
         self.tab6_additional_field1 = tk.Entry(self.tab6)
         self.tab6_additional_field1.pack(side=tk.LEFT)
         self.tab6_additional_field1.bind("<Return>", lambda event: self.add_additional_values_gdb())
+        self.tab6_additional_field1.configure(state='disabled')
 
         self.tab6_additional_label2 = tk.Label(self.tab6, text="Zaufanie")
         self.tab6_additional_label2.pack(side=tk.LEFT)
@@ -267,13 +290,16 @@ class Application(tk.Frame):
         self.tab6_additional_field2 = tk.Entry(self.tab6)
         self.tab6_additional_field2.pack(side=tk.LEFT)
         self.tab6_additional_field2.bind("<Return>", lambda event: self.add_additional_values_gdb())
+        self.tab6_additional_label2.configure(state='disabled')
 
-        self.menu_label = tk.Label(self.tab6, text="Wybierz metrykę:")
-        self.menu_label.pack(side=tk.LEFT)
-        self.menu = ttk.Combobox(self.tab6, values=["euclidean", "manhattan", "l1", "l2"])
-        self.menu.bind("<Return>", lambda event: self.add_additional_values_gdb())
-        self.menu.configure(state='disabled')
-        self.menu.pack()
+        self.tab6_menu_label = tk.Label(self.tab6, text="Wybierz metrykę:")
+        self.tab6_menu_label.pack(side=tk.LEFT)
+        self.tab6_menu_label.configure(state='disabled')
+
+        self.tab6_menu = ttk.Combobox(self.tab6, values=["euclidean", "manhattan", "minkowski"])
+        self.tab6_menu.bind("<Return>", lambda event: self.add_additional_values_gdb())
+        self.tab6_menu.configure(state='disabled')
+        self.tab6_menu.pack(side=tk.LEFT)
 
     def create_tab7_widgets(self):
         self.script7_button = tk.Button(self.tab7)
@@ -282,23 +308,27 @@ class Application(tk.Frame):
         self.script7_button.pack(side=tk.TOP)
 
         self.tab7_var = tk.IntVar()
-        self.tab7_checkbox = tk.Checkbutton(self.tab7, text="Funkcje zaawansowane", variable=self.tab7_var, command=self.show_additional_functions)
+        self.tab7_checkbox = tk.Checkbutton(self.tab7, text="Funkcje zaawansowane", variable=self.tab7_var,
+                                            command=self.show_additional_functions)
         self.tab7_checkbox.pack(side=tk.TOP)
 
-        self.tab7_additional_label1 = tk.Label(self.tab7, text="Numbers of clusters")
+        self.tab7_additional_label1 = tk.Label(self.tab7, text="Liczba klastrów")
         self.tab7_additional_label1.pack(side=tk.LEFT)
         self.tab7_additional_label1.configure(state='disabled')
 
         self.tab7_additional_field1 = tk.Entry(self.tab7)
         self.tab7_additional_field1.pack(side=tk.LEFT)
         self.tab7_additional_field1.bind("<Return>", lambda event: self.add_additional_values_gh())
+        self.tab7_additional_field1.configure(state='disabled')
 
-        self.menu_label = tk.Label(self.tab7, text="Wybierz metrykę:")
-        self.menu_label.pack(side=tk.LEFT)
-        self.menu = ttk.Combobox(self.tab7, values=["euclidean", "manhattan", "l1", "l2"])
-        self.menu.bind("<Return>", lambda event: self.add_additional_values_gh())
-        self.menu.configure(state='disabled')
-        self.menu.pack()
+        self.tab7_menu_label = tk.Label(self.tab7, text="Wybierz metrykę:")
+        self.tab7_menu_label.pack(side=tk.LEFT)
+        self.tab7_menu_label.configure(state='disabled')
+
+        self.tab7_menu = ttk.Combobox(self.tab7, values=["euclidean", "manhattan", "minkowski"])
+        self.tab7_menu.bind("<Return>", lambda event: self.add_additional_values_gh())
+        self.tab7_menu.configure(state='disabled')
+        self.tab7_menu.pack(side=tk.LEFT)
 
     def add_text_ad(self):
             self.script_text.insert(tk.END, """
@@ -309,14 +339,14 @@ from mlxtend.frequent_patterns import association_rules
 
 st.header("Analiza reguł asocjacyjnych")
 
-uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")  # Uploader plików
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
     st.write(df)  # Wypisanie data frame pliku
 
-    min_support = st.slider('Minimum support', min_value=0.0, max_value=1.0, value=0.1, step=0.01)  # Minimalne wsparcie
-    min_confidence = st.slider('Minimum confidence', min_value=0.0, max_value=1.0, value=0.5, step=0.01)  # Minimalne zaufanie
+    min_support = st.slider('Minimalne wsparcie', min_value=0.0, max_value=1.0, value=0.1, step=0.01)  # Minimalne wsparcie
+    min_confidence = st.slider('Minimalne zaufanie', min_value=0.0, max_value=1.0, value=0.5, step=0.01)  # Minimalne zaufanie
 
     frequent_itemsets = apriori(df, min_support=min_support, use_colnames=True)
     rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)
@@ -343,20 +373,20 @@ from sklearn.metrics import confusion_matrix
 
 st.header("Analiza klasyfikatora KNN")
 
-uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")   #Uploader plików
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file) #Odczytanie zbioru danych
     st.write(df)   #Wypisanie data frame pliku
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for features", column_list[:-1],
+    selected_columns = st.multiselect("Wybierz kolumny", column_list[:-1],
                                       default=[column_list[0], column_list[1]])  # Wybór kolumn dla cech
-    selected_labels = st.multiselect("Select columns for labels", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
+    selected_labels = st.multiselect("Wybierz kolumny", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
 
     features = df[selected_columns]  # Wyodrębnienie części warunkowej danych
     labels = df[selected_labels]  # Wyodrębnienie kolumny decyzyjnej
 
-    ts = st.number_input('Test size', min_value=0.0, max_value=1.0, value=0.6, step=0.01) #Ustalenie tablicy treningowej
-    rs = st.number_input('Random State', min_value=1, max_value=10000, value=1234, step=1) #Ustalenie ziarna generatora liczb pseudolosowych
+    ts = st.number_input('Rozmiar tablicy testowej', min_value=0.0, max_value=1.0, value=0.6, step=0.01) #Ustalenie tablicy treningowej
+    rs = st.number_input('Stan losowy', min_value=1, max_value=10000, value=1234, step=1) #Ustalenie ziarna generatora liczb pseudolosowych
 
     datasets = train_test_split(features, labels, test_size=ts, random_state=rs)
 
@@ -365,14 +395,14 @@ if uploaded_file is not None:
     labels_train = datasets[2]
     labels_test = datasets[3]
 
-    nm = st.number_input('Number of Neighbors', min_value=1, max_value=10000, value=5, step=1)  #Liczba sąsiadów
+    nm = st.number_input('Liczba sąsiadów', min_value=1, max_value=10000, value=5, step=1)  #Liczba sąsiadów
     myNoNeighbors = nm
 
     choice = st.selectbox(  #Checkbox do wyboru metryki
 
-        'Select one of the available metrics',
+        'Wybierz jedną z dostępnych metryk',
 
-        ('euclidean', 'manhattan', 'l1', 'l2'))
+        ('euclidean', 'manhattan', 'minkowski'))
     myMetric = choice
 
     model = KNeighborsClassifier(n_neighbors=myNoNeighbors, metric=myMetric)  #Utworzenie obiektu przykładowego modelu klasyfikatora (k-NN)
@@ -382,13 +412,16 @@ if uploaded_file is not None:
 
     accuracy = metrics.accuracy_score(labels_test, labels_predicted)  #Policzenie jakości klasyfikacji
 
-    st.write("Classification accuracy=" ,accuracy)
-    st.write("========= FULL CLASSIFICATION RESULTS ================")
-    report = classification_report(labels_test, labels_predicted)
-    st.text(report)
-    st.write("====== CONFUSION MATRIX =========")
+    st.write("Classification accuracy=", accuracy)
+    st.write("========= PEŁNE WYNIKI KLASYFIKACJI ================")
+    report = classification_report(labels_test, labels_predicted, output_dict=True)
+    df_report = pd.DataFrame(report).transpose()
+    st.write(df_report)
+
+    st.write("====== Tablica pomyłek =========")
     conf_matrix = confusion_matrix(labels_test, labels_predicted)
-    st.write(conf_matrix)
+    df_conf_matrix = pd.DataFrame(conf_matrix)
+    st.write(df_conf_matrix)
     """)
 
     def add_text_dl(self):
@@ -405,20 +438,20 @@ from sklearn.metrics import confusion_matrix
 st.header("Analiza klasyfikatora drzewa losowego")
 
 
-uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")   #Uploader plików
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file) #Odczytanie zbioru danych
     st.write(df)   #Wypisanie data frame pliku
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for features", column_list[:-1],
+    selected_columns = st.multiselect("Wybierz kolumny", column_list[:-1],
                                       default=[column_list[0], column_list[1]])  # Wybór kolumn dla cech
-    selected_labels = st.multiselect("Select columns for labels", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
+    selected_labels = st.multiselect("Wybierz kolumny", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
 
     features = df[selected_columns]  # Wyodrębnienie części warunkowej danych
     labels = df[selected_labels]  # Wyodrębnienie kolumny decyzyjnej
 
-    ts = st.number_input('Test size', min_value=0.0, max_value=1.0, value=0.6, step=0.01) #Ustalenie tablicy treningowej
-    rs = st.number_input('Random State', min_value=1, max_value=10000, value=1234, step=1) #Ustalenie ziarna generatora liczb pseudolosowych
+    ts = st.number_input('Rozmiar tablicy testowej', min_value=0.0, max_value=1.0, value=0.6, step=0.01) #Ustalenie tablicy treningowej
+    rs = st.number_input('Stan losowy', min_value=1, max_value=10000, value=1234, step=1) #Ustalenie ziarna generatora liczb pseudolosowych
 
     datasets = train_test_split(features, labels, test_size=ts, random_state=rs)
 
@@ -427,8 +460,8 @@ if uploaded_file is not None:
     labels_train = datasets[2]
     labels_test = datasets[3]
 
-    n_estimators = st.number_input('Number of Estimators', min_value=1, max_value=10000, value=100, step=1)  #Liczba estymatorów w drzewie losowym
-    max_depth = st.number_input('Max Depth', min_value=1, max_value=10000, value=5, step=1)  #Maksymalna głębokość drzewa
+    n_estimators = st.number_input('Liczba estymatorów', min_value=1, max_value=10000, value=100, step=1)  #Liczba estymatorów w drzewie losowym
+    max_depth = st.number_input('Maksymalna głębokość', min_value=1, max_value=10000, value=5, step=1)  #Maksymalna głębokość drzewa
 
     model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth)  #Utworzenie obiektu klasyfikatora drzewa losowego
     model.fit(features_train, np.ravel(labels_train)) #Uczenie klasyfikatora na części treningowej
@@ -438,13 +471,15 @@ if uploaded_file is not None:
     accuracy = metrics.accuracy_score(labels_test, labels_predicted)  #Policzenie jakości klasyfikacji
 
     st.write("Classification accuracy=", accuracy)
-    st.write("========= FULL CLASSIFICATION RESULTS ================")
-    rf_report = classification_report(labels_test, labels_predicted, output_dict=True)
-    df_rf_report = pd.DataFrame(rf_report).transpose()
-    st.write(df_rf_report)
-    st.write("====== CONFUSION MATRIX =========")
-    rf_conf_matrix = confusion_matrix(labels_test, labels_predicted)
-    st.write(rf_conf_matrix)
+    st.write("========= PEŁNE WYNIKI KLASYFIKACJI ================")
+    report = classification_report(labels_test, labels_predicted, output_dict=True)
+    df_report = pd.DataFrame(report).transpose()
+    st.write(df_report)
+
+    st.write("====== Tablica pomyłek =========")
+    conf_matrix = confusion_matrix(labels_test, labels_predicted)
+    df_conf_matrix = pd.DataFrame(conf_matrix)
+    st.write(df_conf_matrix)
         """)
 
     def add_text_dd(self):
@@ -460,20 +495,20 @@ from sklearn.metrics import confusion_matrix
 
 st.header("Analiza klasyfikatora drzewa decyzyjnego")
 
-uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")   #Uploader plików
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file) #Odczytanie zbioru danych
     st.write(df)   #Wypisanie data frame pliku
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for features", column_list[:-1],
+    selected_columns = st.multiselect("Wybierz kolumny", column_list[:-1],
                                       default=[column_list[0], column_list[1]])  # Wybór kolumn dla cech
-    selected_labels = st.multiselect("Select columns for labels", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
+    selected_labels = st.multiselect("Wybierz kolumny", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
 
     features = df[selected_columns]  # Wyodrębnienie części warunkowej danych
     labels = df[selected_labels]  # Wyodrębnienie kolumny decyzyjnej
 
-    ts = st.number_input('Test size', min_value=0.0, max_value=1.0, value=0.6, step=0.01) #Ustalenie tablicy treningowej
-    rs = st.number_input('Random State', min_value=1, max_value=10000, value=1234, step=1) #Ustalenie ziarna generatora liczb pseudolosowych
+    ts = st.number_input('Rozmiar tablicy testowej', min_value=0.0, max_value=1.0, value=0.6, step=0.01) #Ustalenie tablicy treningowej
+    rs = st.number_input('Stan losowy', min_value=1, max_value=10000, value=1234, step=1) #Ustalenie ziarna generatora liczb pseudolosowych
 
     datasets = train_test_split(features, labels, test_size=ts, random_state=rs)
 
@@ -482,7 +517,7 @@ if uploaded_file is not None:
     labels_train = datasets[2]
     labels_test = datasets[3]
 
-    max_depth = st.number_input('Max Depth', min_value=1, max_value=10000, value=5, step=1)  #Maksymalna głębokość drzewa
+    max_depth = st.number_input('Maksymalna głębokość', min_value=1, max_value=10000, value=5, step=1)  #Maksymalna głębokość drzewa
 
     model = DecisionTreeClassifier(max_depth=max_depth)  #Utworzenie obiektu klasyfikatora drzewa decyzyjnego
     model.fit(features_train, np.ravel(labels_train)) #Uczenie klasyfikatora na części treningowej
@@ -492,13 +527,15 @@ if uploaded_file is not None:
     accuracy = metrics.accuracy_score(labels_test, labels_predicted)  #Policzenie jakości klasyfikacji
 
     st.write("Classification accuracy=", accuracy)
-    st.write("========= FULL CLASSIFICATION RESULTS ================")
+    st.write("========= PEŁNE WYNIKI KLASYFIKACJI ================")
     report = classification_report(labels_test, labels_predicted, output_dict=True)
     df_report = pd.DataFrame(report).transpose()
     st.write(df_report)
-    st.write("====== CONFUSION MATRIX =========")
+
+    st.write("====== Tablica pomyłek =========")
     conf_matrix = confusion_matrix(labels_test, labels_predicted)
-    st.write(conf_matrix)
+    df_conf_matrix = pd.DataFrame(conf_matrix)
+    st.write(df_conf_matrix)
         """)
 
     def add_text_gkm(self):
@@ -511,14 +548,14 @@ import matplotlib.pyplot as plt
 
 st.header("Analiza grupowania KMeans")
 
-uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")  # Uploader plików
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
     st.write(df)  # Wypisanie data frame pliku
 
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for clustering", column_list, default=[column_list[0], column_list[3]])
+    selected_columns = st.multiselect("Wybierz kolumny do grupowania", column_list, default=[column_list[0], column_list[3]])
 
     if len(selected_columns) >= 2:
         features = df[selected_columns]  # Wybór kolumn do grupowania
@@ -526,13 +563,13 @@ if uploaded_file is not None:
         scaler = StandardScaler()
         sFeatures = scaler.fit_transform(features)
 
-        nc = st.number_input('Numbers of clusters', min_value=0, max_value=1000, value=4,
+        nc = st.number_input('Liczba klastrów', min_value=0, max_value=1000, value=4,
                                  step=1)  # Wybór liczby klastór
-        ni = st.number_input('Minimum number of iterations', min_value=0, max_value=1000, value=10,
+        ni = st.number_input('Minimalna liczba iteracji', min_value=0, max_value=1000, value=10,
                                  step=1)  # Wybór minimalnej liczby iteracji
-        mi = st.number_input('Maximium number of iterations', min_value=0, max_value=1000, value=1000,
+        mi = st.number_input('Maksymalna liczba iteracji', min_value=0, max_value=1000, value=1000,
                                  step=1)  # Wybór maksymalnej liczby iteracji
-        rs = st.number_input('Random state', min_value=0, max_value=10000, value=1234,
+        rs = st.number_input('Stan losowy', min_value=0, max_value=10000, value=1234,
                                  step=1)  # Ustalenie ziarna generatora liczb pseudolosowych
 
         kmeans = KMeans(n_clusters=nc, init='k-means++', n_init=ni, max_iter=mi, random_state=rs)
@@ -581,21 +618,21 @@ import matplotlib.pyplot as plt
 
 st.header("Analiza grupowania DBSCAN")
 
-uploaded_file = st.file_uploader("Choose a file", key='2')  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik", key='2')  # Uploader plików
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
     st.write(df)  # Wypisanie data frame pliku
 
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for clustering", column_list)
+    selected_columns = st.multiselect("Wybierz kolumny do grupowania", column_list,default=[column_list[0], column_list[3]])
 
     if len(selected_columns) >= 2:
         features = df[selected_columns]  # Wybór kolumn do grupowania
-        e = st.number_input('The maximum distance between observations to be considered adjacent.', min_value=0,
+        e = st.number_input('Maksymalna odległość między obserwacjami, które należy uznać za sąsiadujące.', min_value=0,
                                 max_value=1000, value=3, step=1)
-        ms = st.number_input('Minimum samples', min_value=0, max_value=1000, value=5, step=1)
-        met = st.selectbox('Select one of the available metrics', ('euclidean', 'manhattan', 'l1', 'l2'))
+        ms = st.number_input('Minimalna liczba próbek', min_value=0, max_value=1000, value=5, step=1)
+        met = st.selectbox('Wybierz jedną z dostępnych metryk', ('euclidean', 'manhattan', 'minkowski'))
 
         db = DBSCAN(eps=e, min_samples=ms, metric=met)
         db.fit(features)
@@ -638,21 +675,21 @@ import matplotlib.pyplot as plt
 
 st.header("Analiza grupowania hierarchicznego")
 
-uploaded_file = st.file_uploader("Choose a file", key='3')  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik", key='3')  # Uploader plików
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
     st.write(df)  # Wypisanie data frame pliku
 
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for clustering", column_list, key='4')
+    selected_columns = st.multiselect("Wybierz kolumny do grupowania", column_list, default=[column_list[0], column_list[3]], key='4')
 
     if len(selected_columns) >= 2:
         features = df[selected_columns]  # Wybór kolumn do grupowania
 
-        nc = st.number_input('Numbers of clusters', min_value=0, max_value=1000, value=4,
+        nc = st.number_input('Liczba klastrów', min_value=0, max_value=1000, value=4,
                              step=1, key='num_clusters')  # Wybór liczby klastrów
-        met = st.selectbox('Select one of the available metrics', ('euclidean', 'manhattan', 'l1', 'l2'))
+        met = st.selectbox('Wybierz jedną z dostępnych metryk', ('euclidean', 'manhattan', 'minkowski'))
 
         ac = AgglomerativeClustering(n_clusters=nc, affinity=met, linkage=('average'))
         ac.fit(features)
@@ -690,6 +727,8 @@ if uploaded_file is not None:
         if self.tab1_var.get():
             self.tab1_additional_label1.configure(state='normal')
             self.tab1_additional_label2.configure(state='normal')
+            self.tab1_additional_field1.configure(state='normal')
+            self.tab1_additional_field2.configure(state='normal')
         else:
             self.tab1_additional_label1.configure(state='disabled')
             self.tab1_additional_label2.configure(state='disabled')
@@ -700,7 +739,11 @@ if uploaded_file is not None:
             self.tab2_additional_label1.configure(state='normal')
             self.tab2_additional_label2.configure(state='normal')
             self.tab2_additional_label3.configure(state='normal')
-            self.menu.configure(state='normal')
+            self.tab2_additional_field1.configure(state='normal')
+            self.tab2_additional_field2.configure(state='normal')
+            self.tab2_additional_field3.configure(state='normal')
+            self.tab2_menu_label.configure(state='normal')
+            self.tab2_menu.configure(state='normal')
         else:
             self.tab2_additional_label1.configure(state='disabled')
             self.tab2_additional_label2.configure(state='disabled')
@@ -708,13 +751,18 @@ if uploaded_file is not None:
             self.tab2_additional_field1.configure(state='disabled')
             self.tab2_additional_field2.configure(state='disabled')
             self.tab2_additional_field3.configure(state='disabled')
-            self.menu.configure(state='disabled')
+            self.tab2_menu_label.configure(state='disabled')
+            self.tab2_menu.configure(state='disabled')
 
         if self.tab4_var.get():
             self.tab4_additional_label1.configure(state='normal')
             self.tab4_additional_label2.configure(state='normal')
             self.tab4_additional_label3.configure(state='normal')
             self.tab4_additional_label4.configure(state='normal')
+            self.tab4_additional_field1.configure(state='normal')
+            self.tab4_additional_field2.configure(state='normal')
+            self.tab4_additional_field3.configure(state='normal')
+            self.tab4_additional_field4.configure(state='normal')
         else:
             self.tab4_additional_label1.configure(state='disabled')
             self.tab4_additional_label2.configure(state='disabled')
@@ -729,6 +777,9 @@ if uploaded_file is not None:
             self.tab5_additional_label1.configure(state='normal')
             self.tab5_additional_label2.configure(state='normal')
             self.tab5_additional_label3.configure(state='normal')
+            self.tab5_additional_field1.configure(state='normal')
+            self.tab5_additional_field2.configure(state='normal')
+            self.tab5_additional_field3.configure(state='normal')
         else:
             self.tab5_additional_label1.configure(state='disabled')
             self.tab5_additional_label2.configure(state='disabled')
@@ -742,6 +793,10 @@ if uploaded_file is not None:
             self.tab3_additional_label2.configure(state='normal')
             self.tab3_additional_label3.configure(state='normal')
             self.tab3_additional_label4.configure(state='normal')
+            self.tab3_additional_field1.configure(state='normal')
+            self.tab3_additional_field2.configure(state='normal')
+            self.tab3_additional_field3.configure(state='normal')
+            self.tab3_additional_field4.configure(state='normal')
         else:
             self.tab3_additional_label1.configure(state='disabled')
             self.tab3_additional_label2.configure(state='disabled')
@@ -755,23 +810,29 @@ if uploaded_file is not None:
         if self.tab6_var.get():
             self.tab6_additional_label1.configure(state='normal')
             self.tab6_additional_label2.configure(state='normal')
-            self.menu.configure(state='normal')
+            self.tab6_additional_field1.configure(state='normal')
+            self.tab6_additional_field2.configure(state='normal')
+            self.tab6_menu_label.configure(state='normal')
+            self.tab6_menu.configure(state='normal')
         else:
             self.tab6_additional_label1.configure(state='disabled')
             self.tab6_additional_field1.configure(state='disabled')
             self.tab6_additional_label2.configure(state='disabled')
             self.tab6_additional_field2.configure(state='disabled')
-            self.menu.configure(state='disabled')
+            self.tab6_menu_label.configure(state='disabled')
+            self.tab6_menu.configure(state='disabled')
 
         if self.tab7_var.get():
             self.tab7_additional_label1.configure(state='normal')
-            self.menu.configure(state='normal')
+            self.tab7_additional_field1.configure(state='normal')
+            self.tab7_menu_label.configure(state='normal')
+            self.tab7_menu.configure(state='normal')
 
         else:
             self.tab7_additional_label1.configure(state='disabled')
             self.tab7_additional_field1.configure(state='disabled')
-            self.menu.configure(state='disabled')
-
+            self.tab7_menu_label.configure(state='disabled')
+            self.tab7_menu.configure(state='disabled')
 
         self.script_text.delete("1.0", tk.END)
 
@@ -791,8 +852,7 @@ from mlxtend.frequent_patterns import apriori
 from mlxtend.frequent_patterns import association_rules
 
 st.header("Analiza reguł asocjacyjnych")
-
-uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")  # Uploader plików
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
@@ -815,7 +875,6 @@ if uploaded_file is not None:
     st.write("Najważniejsze reguły:")
     st.table(rules)        """
         self.script_text.insert(tk.END, additional_text)
-
         self.tab1_additional_field1.delete(0, tk.END)
         self.tab1_additional_field2.delete(0, tk.END)
 
@@ -829,7 +888,7 @@ if uploaded_file is not None:
         nm = self.tab2_additional_field3.get()
         if not nm:
             nm = "5"
-        choice = self.menu.get()
+        choice = self.tab2_menu.get()
         if not choice:
             choice = "euclidean"
 
@@ -847,13 +906,13 @@ from sklearn.metrics import confusion_matrix
 
 st.header("Analiza klasyfikatora KNN")
 
-uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")   #Uploader plików
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file) #Odczytanie zbioru danych
     st.write(df)   #Wypisanie data frame pliku
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for features", column_list[:-1], default=[column_list[0], column_list[1]])  # Wybór kolumn dla cech
-    selected_labels = st.multiselect("Select columns for labels", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
+    selected_columns = st.multiselect("Wybór kolumn dla cech", column_list[:-1], default=[column_list[0], column_list[1]])  # Wybór kolumn dla cech
+    selected_labels = st.multiselect("Wybór kolumn dla etykiet", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
     features = df[selected_columns]  # Wyodrębnienie części warunkowej danych
     labels = df[selected_labels]  # Wyodrębnienie kolumny decyzyjnej
 """
@@ -878,21 +937,25 @@ if uploaded_file is not None:
         self.script_text.insert(tk.END, additional_values)
 
         additional_text = """
-    model = KNeighborsClassifier(n_neighbors=nm, metric=myMetric)  #Utworzenie obiektu przykładowego modelu klasyfikatora (k-NN)
-    model.fit(features_train, np.ravel(labels_train)) #Uczenie klasyfikatora na części treningowej
+    #Utworzenie obiektu przykładowego modelu klasyfikatora (k-NN)
+    model = KNeighborsClassifier(n_neighbors=nm, metric=myMetric)  
+    #Uczenie klasyfikatora na części treningowej
+    model.fit(features_train, np.ravel(labels_train)) 
 
     labels_predicted = model.predict(features_test) #Generowania decyzji dla części testowej
 
     accuracy = metrics.accuracy_score(labels_test, labels_predicted)  #Policzenie jakości klasyfikacji
 
-    st.write("Classification accuracy=" ,accuracy)
-    st.write("========= FULL CLASSIFICATION RESULTS ================")
-    knn_report = classification_report(labels_test, labels_predicted, output_dict=True)
-    report = pd.DataFrame(knn_report).transpose()
-    st.text(report)
-    st.write("====== CONFUSION MATRIX =========")
+    st.write("Classification accuracy=", accuracy)
+    st.write("========= PEŁNE WYNIKI KLASYFIKACJI ================")
+    report = classification_report(labels_test, labels_predicted, output_dict=True)
+    df_report = pd.DataFrame(report).transpose()
+    st.write(df_report)
+
+    st.write("====== Tablica pomyłek =========")
     conf_matrix = confusion_matrix(labels_test, labels_predicted)
-    st.write(conf_matrix)
+    df_conf_matrix = pd.DataFrame(conf_matrix)
+    st.write(df_conf_matrix)
                     """
         self.script_text.insert(tk.END, additional_text)
 
@@ -924,13 +987,13 @@ from sklearn.metrics import confusion_matrix
 
 st.header("Analiza klasyfikatora drzewa losowego")
 
-uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")  # Uploader plików
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
     st.write(df)  # Wypisanie data frame pliku
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for features", column_list[:-1], default=[column_list[0], column_list[1]])  # Wybór kolumn dla cech
-    selected_labels = st.multiselect("Select columns for labels", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
+    selected_columns = st.multiselect("Wybór kolumn dla cech", column_list[:-1], default=[column_list[0], column_list[1]])  # Wybór kolumn dla cech
+    selected_labels = st.multiselect("Wybór kolumn dla etykiet", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
 
     features = df[selected_columns]  # Wyodrębnienie części warunkowej danych
     labels = df[selected_labels]  # Wyodrębnienie kolumny decyzyjnej
@@ -954,21 +1017,25 @@ if uploaded_file is not None:
         self.script_text.insert(tk.END, additional_values)
 
         additional_text = """
-    model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth)  #Utworzenie obiektu klasyfikatora drzewa losowego
-    model.fit(features_train, np.ravel(labels_train)) #Uczenie klasyfikatora na części treningowej
+    #Utworzenie obiektu klasyfikatora drzewa losowego
+    model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth)
+    #Uczenie klasyfikatora na części treningowej  
+    model.fit(features_train, np.ravel(labels_train)) 
 
     labels_predicted = model.predict(features_test) #Generowanie decyzji dla części testowej
 
     accuracy = metrics.accuracy_score(labels_test, labels_predicted)  #Policzenie jakości klasyfikacji
 
     st.write("Classification accuracy=", accuracy)
-    st.write("========= FULL CLASSIFICATION RESULTS ================")
-    rf_report = classification_report(labels_test, labels_predicted, output_dict=True)
-    df_rf_report = pd.DataFrame(rf_report).transpose()
-    st.write(df_rf_report)
-    st.write("====== CONFUSION MATRIX =========")
-    rf_conf_matrix = confusion_matrix(labels_test, labels_predicted)
-    st.write(rf_conf_matrix)
+    st.write("========= PEŁNE WYNIKI KLASYFIKACJI ================")
+    report = classification_report(labels_test, labels_predicted, output_dict=True)
+    df_report = pd.DataFrame(report).transpose()
+    st.write(df_report)
+
+    st.write("====== Tablica pomyłek =========")
+    conf_matrix = confusion_matrix(labels_test, labels_predicted)
+    df_conf_matrix = pd.DataFrame(conf_matrix)
+    st.write(df_conf_matrix)
         """
         self.script_text.insert(tk.END, additional_text)
 
@@ -994,14 +1061,16 @@ from sklearn.metrics import confusion_matrix
 
 st.header("Analiza klasyfikatora drzewa decyzyjnego")
 
-uploaded_file = st.file_uploader("Choose a file")   #Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")   #Uploader plików
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file) #Odczytanie zbioru danych
     st.write(df)   #Wypisanie data frame pliku
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for features", column_list[:-1],
-                                      default=[column_list[0], column_list[1]])  # Wybór kolumn dla cech
-    selected_labels = st.multiselect("Select columns for labels", column_list[-1:], default=[column_list[-1]])  # Wybór kolumn dla etykiet
+    # Wybór kolumn dla cech
+    selected_columns = st.multiselect("Wybór kolumn dla cech", column_list[:-1],
+                                      default=[column_list[0], column_list[1]])  
+    # Wybór kolumn dla etykiet
+    selected_labels = st.multiselect("Wybór kolumn dla etykiet", column_list[-1:], default=[column_list[-1]])  
 
     features = df[selected_columns]  # Wyodrębnienie części warunkowej danych
     labels = df[selected_labels]  # Wyodrębnienie kolumny decyzyjnej
@@ -1032,13 +1101,15 @@ if uploaded_file is not None:
     accuracy = metrics.accuracy_score(labels_test, labels_predicted)  #Policzenie jakości klasyfikacji
 
     st.write("Classification accuracy=", accuracy)
-    st.write("========= FULL CLASSIFICATION RESULTS ================")
+    st.write("========= PEŁNE WYNIKI KLASYFIKACJI ================")
     report = classification_report(labels_test, labels_predicted, output_dict=True)
     df_report = pd.DataFrame(report).transpose()
     st.write(df_report)
-    st.write("====== CONFUSION MATRIX =========")
+
+    st.write("====== Tablica pomyłek =========")
     conf_matrix = confusion_matrix(labels_test, labels_predicted)
-    st.write(conf_matrix)
+    df_conf_matrix = pd.DataFrame(conf_matrix)
+    st.write(df_conf_matrix)
             """
             self.script_text.insert(tk.END, additional_text)
 
@@ -1065,14 +1136,15 @@ from sklearn.preprocessing import StandardScaler
 
 st.header("Analiza grupowania KMeans")
 
-uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")  # Uploader plików
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
     st.write(df)  # Wypisanie data frame pliku
 
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for clustering", column_list, default=[column_list[0], column_list[3]])
+    selected_columns = st.multiselect("Wybierz kolumny do grupowania", column_list, 
+    default=[column_list[0], column_list[3]])
     if len(selected_columns) >= 2:
         features = df[selected_columns]  # Wybór kolumn do grupowania
         sFeatures = features
@@ -1081,7 +1153,6 @@ if uploaded_file is not None:
 """
 
         self.script_text.insert(tk.END, additional_text)
-
         additional_values = f"        nc = {nc}\n        ni = {ni}\n        mi = {mi}\n        rs = {rs}\n"
         self.script_text.insert(tk.END, additional_values)
 
@@ -1146,14 +1217,15 @@ import matplotlib.pyplot as plt
 
 st.header("Analiza grupowania DBSCAN)
 
-uploaded_file = st.file_uploader("Choose a file")  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik")  # Uploader plików
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
     st.write(df)  # Wypisanie data frame pliku
 
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for clustering", column_list, default=[column_list[0], column_list[3]])
+    selected_columns = st.multiselect("Wybierz kolumny do grupowania", column_list, 
+    default=[column_list[0], column_list[3]])
     if len(selected_columns) >= 2:
         features = df[selected_columns]  # Wybór kolumn do grupowania
 """
@@ -1211,14 +1283,14 @@ from sklearn.cluster import AgglomerativeClustering
 
 st.header("Analiza grupowania hierarchicznego")
 
-uploaded_file = st.file_uploader("Choose a file", key='3')  # Uploader plików
+uploaded_file = st.file_uploader("Wybierz plik", key='3')  # Uploader plików
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)  # Odczytanie zbioru danych
     st.write(df)  # Wypisanie data frame pliku
 
     column_list = list(df.columns)
-    selected_columns = st.multiselect("Select columns for clustering", column_list, key='4')
+    selected_columns = st.multiselect("Wybierz kolumny do grupowania", column_list, key='4')
     if len(selected_columns) >= 2:
         features = df[selected_columns]  # Wybór kolumn do grupowania
 """
